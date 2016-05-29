@@ -11,6 +11,8 @@
 
 namespace Petrinet\Model;
 
+use Doctrine\ORM\Mapping as ORM;
+
 /**
  * Base class for the arcs.
  *
@@ -85,7 +87,7 @@ class Arc implements ArcInterface
      * Arc Specification.
      *
      * @var string
-     * @ORM\Column(name="arcSpecification", type="string", length="256", nullable=true)
+     * @ORM\Column(name="arcSpecification", type="string", length=256, nullable=true)
      */
     protected $arcSpecification;
 

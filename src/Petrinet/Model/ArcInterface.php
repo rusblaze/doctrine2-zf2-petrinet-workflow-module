@@ -30,7 +30,7 @@ interface ArcInterface
      *
      * @param PlaceInterface $place
      */
-    public function setPlace(PlaceInterface $place);
+    public function setPlace(Place $place);
 
     /**
      * Gets the place.
@@ -44,7 +44,7 @@ interface ArcInterface
      *
      * @param TransitionInterface $transition
      */
-    public function setTransition(TransitionInterface $transition);
+    public function setTransition(Transition $transition);
 
     /**
      * Gets the transition.

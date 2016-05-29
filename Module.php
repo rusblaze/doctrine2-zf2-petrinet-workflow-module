@@ -11,8 +11,6 @@ use Zend\ModuleManager\Feature;
  */
 class Module implements
     Feature\ConfigProviderInterface,
-    Feature\ConsoleBannerProviderInterface,
-    Feature\ConsoleUsageProviderInterface,
     Feature\DependencyIndicatorInterface
 {
 

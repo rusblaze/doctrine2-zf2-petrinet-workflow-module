@@ -11,6 +11,8 @@
 
 namespace Petrinet\Model;
 
+use Doctrine\ORM\Mapping as ORM;
+
 /**
  * Implementation of TransitionInterface.
  *
@@ -74,7 +76,7 @@ class Transition
     /**
      * @var string
      *
-     * @ORM\Column(name="action", type="string", length="256", nullable=false)
+     * @ORM\Column(name="action", type="string", length=256, nullable=false)
      */
     protected $action;
 

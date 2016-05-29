@@ -11,6 +11,8 @@
 
 namespace Petrinet\Model;
 
+use Doctrine\ORM\Mapping as ORM;
+
 /**
  * Implementation of TokenInterface.
  *
@@ -36,9 +38,9 @@ class Token
     protected $id;
 
     /**
-     * @var Case
+     * @var WfCase
      *
-     * @ORM\ManyToOne(targetEntity="Case")
+     * @ORM\ManyToOne(targetEntity="WfCase")
      * @ORM\JoinColumn(name="case", referencedColumnName="id")
      */
     protected $case;
@@ -64,7 +66,6 @@ class Token
      * @ORM\Column(name="enabledDate", type="datetime", nullable=false)
      */
     protected $enabledDate;
-
     /**
      * @var \DateTime
      *
@@ -89,7 +90,7 @@ class Token
         return $this->id;
     }
 
-    public function setCase(Case $case)
+    public function setCase(WfCase $case)
     {
         $this->case = $case;
         return $this;

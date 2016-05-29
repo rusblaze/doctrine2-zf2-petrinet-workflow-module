@@ -19,7 +19,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="wf_case")
  * @ORM\Entity()
  */
-class Case
+class WfCase
 {
     const STATUS_OPEN = 0;
     const STATUS_CLOSED = 1;

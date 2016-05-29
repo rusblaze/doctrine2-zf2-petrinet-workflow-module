@@ -53,7 +53,7 @@ class PetriNetWorkflow implements PetrinetInterface
     /**
      * @var string
      *
-     * @ORM\Column(name="startAction", type="string", length="256",  nullable=false)
+     * @ORM\Column(name="startAction", type="string", length=256,  nullable=false)
      */
     private $startAction;
 
