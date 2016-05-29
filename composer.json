@@ -22,7 +22,10 @@
     "autoload": {
         "psr-0": {
             "Petrinet\\": "src/"
-        }
+        },
+        "classmap": [
+            "./Module.php"
+        ]
     },
     "config": {
         "bin-dir": "bin"
