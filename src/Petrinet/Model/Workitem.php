@@ -14,15 +14,15 @@ namespace Petrinet\Model;
 /**
  * Implementation of TokenInterface.
  *
- * @ORM\Table(name="wf_token")
+ * @ORM\Table(name="wf_workitem")
  * @ORM\Entity()
  */
-class Token
+class Workitem
 {
-    const STATUS_FREE = 0;
-    const STATUS_LOCKED = 1;
-    const STATUS_CONSUMED = 2;
-    const STATUS_CANCELLED = 3;
+    const STATUS_ENABLED = 0;
+    const STATUS_IN_PROGRESS = 1;
+    const STATUS_CANCELLED = 2;
+    const STATUS_FINISHED = 3;
 
     /**
      * The id.
@@ -44,19 +44,19 @@ class Token
     protected $case;
 
     /**
-     * @var Place
+     * @var Transition
      *
-     * @ORM\ManyToOne(targetEntity="Place")
-     * @ORM\JoinColumn(name="place", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="Transition")
+     * @ORM\JoinColumn(name="transition", referencedColumnName="id")
      */
-    protected $place;
+    protected $transition;
 
     /**
      * @var integer
      *
      * @ORM\Column(name="status", type="smallint", nullable=false)
      */
-    protected $status = self::STATUS_FREE;
+    protected $status = self::STATUS_ENABLED;
 
     /**
      * @var \DateTime
@@ -75,9 +75,16 @@ class Token
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="consumedDate", type="datetime", nullable=true)
+     * @ORM\Column(name="finishedDate", type="datetime", nullable=true)
      */
-    protected $consumedDate;
+    protected $finishedDate;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="deadline", type="datetime", nullable=true)
+     */
+    protected $deadline;
 
     /**
      * Gets the id.
@@ -99,14 +106,14 @@ class Token
         return $this->case;
     }
 
-    public function setPlace(Place $place)
+    public function setTransition(Transition $transition)
     {
-        $this->place = $place;
+        $this->transition = $transition;
         return $this;
     }
-    public function getPlace()
+    public function getTransition()
     {
-        return $this->place;
+        return $this->transition;
     }
 
     public function setStatus($status)
@@ -139,13 +146,23 @@ class Token
         return $this->cancelledDate;
     }
 
-    public function setConsumedDate(\DateTime $consumedDate = null)
+    public function setFinishedDate(\DateTime $finishedDate = null)
     {
-        $this->consumedDate = $consumedDate;
+        $this->finishedDate = $finishedDate;
         return $this;
     }
-    public function getConsumedDate()
+    public function getFinishedDate()
     {
-        return $this->consumedDate;
+        return $this->finishedDate;
+    }
+
+    public function setDeadline(\DateTime $deadline = null)
+    {
+        $this->deadline = $deadline;
+        return $this;
+    }
+    public function getDeadline()
+    {
+        return $this->deadline;
     }
 }

@@ -11,26 +11,103 @@
 
 namespace Petrinet\Model;
 
+use Doctrine\ORM\Mapping as ORM;
+
 /**
  * Implementation of PlaceInterface.
  *
  * @author Florian Voutzinos <florian@voutzinos.com>
+ * @ORM\Table(name="wf_place")
+ * @ORM\Entity()
  */
-class Place extends AbstractNode implements PlaceInterface
+class Place
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function addInputArc(OutputArcInterface $arc)
-    {
-        $this->inputArcs[] = $arc;
-    }
+    const START = 1;
+    const END = 2;
+    const INTERMEDIATE = 3;
 
     /**
-     * {@inheritdoc}
+     * The id.
+     *
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
-    public function addOutputArc(InputArcInterface $arc)
+    protected $id;
+
+    /**
+     * @var Workflow
+     *
+     * @ORM\ManyToOne(targetEntity="PetriNetWorkflow")
+     * @ORM\JoinColumn(name="workflow", referencedColumnName="id")
+     */
+    protected $workflow;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="placeType", type="smallint", nullable=false)
+     */
+    protected $placeType = self::INTERMEDIATE;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", nullable=false)
+     */
+    protected $name;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="desc", type="text", nullable=true)
+     */
+    protected $desc;
+
+    public function getId()
     {
-        $this->outputArcs[] = $arc;
+        return $this->id;
+    }
+
+    public function setWorkflow(PetriNetWorkflow $workflow)
+    {
+        $this->workflow = $workflow;
+        return $this;
+    }
+    public function getWorkflow()
+    {
+        return $this->workflow;
+    }
+
+    public function setPlaceType($placeType)
+    {
+        $this->placeType = $placeType;
+        return $this;
+    }
+    public function getPlaceType()
+    {
+        return $this->placeType;
+    }
+
+    public function setName($name)
+    {
+        $this->name = $name;
+        return $this;
+    }
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    public function setDesc($desc)
+    {
+        $this->desc = $desc;
+        return $this;
+    }
+    public function getDesc()
+    {
+        return $this->desc;
     }
 }
