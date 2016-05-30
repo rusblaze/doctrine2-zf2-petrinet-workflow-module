@@ -1,24 +1,23 @@
 <?php
-
 /**
  * This file is part of the Petrinet framework.
  *
- * (c) Florian Voutzinos <florian@voutzinos.com>
+ * (c) Alexander Ivanov <rusblaze@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace Petrinet\Model;
 
 use Doctrine\ORM\Mapping as ORM;
+use SlmQueue\Job\AbstractJob;
 /**
  * Implementation of TokenInterface.
  *
  * @ORM\Table(name="wf_workitem")
  * @ORM\Entity()
  */
-class Workitem
+class Workitem extends AbstractJob
 {
     const STATUS_ENABLED = 0;
     const STATUS_IN_PROGRESS = 1;
@@ -92,6 +91,14 @@ class Workitem
      *
      * @return integer
      */
+    public function setId($id)
+    {
+        $this->id = $id;
+        parent::setId($id);
+
+        return $this;
+    }
+
     public function getId()
     {
         return $this->id;

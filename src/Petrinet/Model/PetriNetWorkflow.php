@@ -2,15 +2,15 @@
 /**
  * This file is part of the Petrinet framework.
  *
- * (c) Florian Voutzinos <florian@voutzinos.com>
+ * (c) Alexander Ivanov <rusblaze@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 namespace Petrinet\Model;
 
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Workflow collection
@@ -23,9 +23,8 @@ class PetriNetWorkflow implements PetrinetInterface
     /**
      * @var integer
      *
-     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Column(name="id", type="string", length=80, nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
 
@@ -87,6 +86,15 @@ class PetriNetWorkflow implements PetrinetInterface
     {
         $this->places = new ArrayCollection();
         $this->transitions = new ArrayCollection();
+    }
+
+    /**
+     * Sets the id.
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+        return $this;
     }
 
     /**

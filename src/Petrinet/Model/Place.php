@@ -1,14 +1,12 @@
 <?php
-
 /**
  * This file is part of the Petrinet framework.
  *
- * (c) Florian Voutzinos <florian@voutzinos.com>
+ * (c) Alexander Ivanov <rusblaze@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace Petrinet\Model;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -66,6 +64,14 @@ class Place
      */
     protected $desc;
 
+    /**
+     * Place Type (color).
+     *
+     * @var string
+     * @ORM\Column(name="color", type="string", length=256, nullable=true)
+     */
+    protected $color;
+
     public function getId()
     {
         return $this->id;
@@ -109,5 +115,15 @@ class Place
     public function getDesc()
     {
         return $this->desc;
+    }
+
+    public function setColor($color)
+    {
+        $this->color = $color;
+        return $this;
+    }
+    public function getColor()
+    {
+        return $this->color;
     }
 }
